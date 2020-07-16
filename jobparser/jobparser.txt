@@ -1,0 +1,38 @@
+2020-07-15 21:41:07 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: jobparser)
+2020-07-15 21:41:07 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.5, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.8.1 (tags/v3.8.1:1b293b6, Dec 18 2019, 22:39:24) [MSC v.1916 32 bit (Intel)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-07-15 21:41:07 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-07-15 21:41:07 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'jobparser',
+ 'LOG_FILE': 'jobparser.txt',
+ 'NEWSPIDER_MODULE': 'jobparser.spiders',
+ 'SPIDER_MODULES': ['jobparser.spiders'],
+ 'USER_AGENT': 'Mozilla.116 Safari/537.36'}
+2020-07-15 21:41:07 [scrapy.extensions.telnet] INFO: Telnet Password: 9a215eec5f7735fa
+2020-07-15 21:41:07 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2020-07-15 21:41:08 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-07-15 21:41:08 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-07-15 21:41:08 [scrapy.middleware] INFO: Enabled item pipelines:
+['jobparser.pipelines.JobparserPipeline']
+2020-07-15 21:41:08 [scrapy.core.engine] INFO: Spider opened
+2020-07-15 21:41:08 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2020-07-15 21:41:08 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2020-07-15 21:41:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://izhevsk.hh.ru/search/vacancy?area=&st=searchVacancy&fromSearch=true&text=python> (referer: None)
