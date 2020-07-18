@@ -2,7 +2,7 @@ import scrapy
 from scrapy.http import HtmlResponse
 from jobparser.items import JobparserItem
 from datetime import datetime
-
+import re
 class HhruSpider(scrapy.Spider):
     name = 'hhru'
     allowed_domains = ['hh.ru']
@@ -20,16 +20,34 @@ class HhruSpider(scrapy.Spider):
 
 
     def vacansy_parse(self, response:HtmlResponse):
-        name_vac = response.css('h1::text').extract_first()
-        salary_vac = response.xpath("//span[@class='bloko-header-2 bloko-header-2_lite']/text()").extract()
+        obj = {
+            'name_vac' : response.css('h1::text').extract_first(),
+            'salary' : self.pats_salary_hhru(response.xpath("//span[@class='bloko-header-2 bloko-header-2_lite']/text()").extract()),
+            'company' : "".join(response.xpath("//div[contains(@class,'vacancy-company-name')]//span/text()").extract()),
+            'text_vac' : " ".join(response.xpath("//div[contains(@data-qa,'vacancy-description')]/descendant::text()").extract()),
+            'link_vac' : response.url,
+            'date_pars' : datetime.today()
 
-        text_vac = " ".join(response.xpath("//div[contains(@data-qa,'vacancy-description')]/descendant::text()").extract())
-        link_vac = response.url
-        date_pars = datetime.today()
+        }
+        yield JobparserItem(**obj)
 
-        yield JobparserItem(name=name_vac, salary=salary_vac, text_vac=text_vac, link_vac=link_vac, date_pars=date_pars)
-
-
+    def pats_salary_hhru(self, q: list):
+        q = [re.sub('^\s|\s$|(?:\xa0)', '', s) for s in q]
+        obj = {'min': None,
+               'max': None,
+               'unit': ''
+               }
+        if len(q) <= 1:
+            return obj
+        elif len(q) > 5:
+            obj['min'] = float(q[1])
+            obj['max'] = float(q[3])
+            obj['unit'] = q[5]
+        elif len(q) <= 5:
+            obj['min'] = float(q[1]) if q[0].upper() == "от".upper() else None
+            obj['max'] = float(q[1]) if q[0].upper() == "до".upper() else None
+            obj['unit'] = q[3]
+        return obj
 
 
 
