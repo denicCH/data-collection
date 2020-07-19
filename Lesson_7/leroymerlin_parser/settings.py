@@ -67,7 +67,7 @@ COOKIES_ENABLED = False
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'leroymerlin_parser.pipelines.DataBasePipeline': 300,
-   'leroymerlin_parser.pipelines.AvitoPhotosPipeline': 200,
+   'leroymerlin_parser.pipelines.LeroymerlinPhotosPipeline': 200,
 
 }
 

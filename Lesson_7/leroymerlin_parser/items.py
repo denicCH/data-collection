@@ -12,12 +12,20 @@ def cleaner_photo(value):
     else:
         return value
 
+def dr_photo(value):
 
-class AvitoparserItem(scrapy.Item):
+        return value
+
+
+class leroymerlinparserItem(scrapy.Item):
     # define the fields for your item here like:
 
     _id = scrapy.Field()
     name = scrapy.Field(output_processor=TakeFirst())
     photos = scrapy.Field(input_processor=MapCompose(cleaner_photo))
+    price = scrapy.Field(output_processor=TakeFirst())
+    # characteristics = scrapy.Field(input_processor=MapCompose(dr_photo))
+    characteristics = scrapy.Field(input_processor=MapCompose(dr_photo))
     url = scrapy.Field()
+    date_pars = scrapy.Field()
 

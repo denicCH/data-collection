@@ -15,7 +15,7 @@ from pymongo import MongoClient
 class DataBasePipeline:
     def __init__(self):
         self.client = MongoClient('localhost',27017)
-        self.mongo_base = self.client.avito_photos
+        self.mongo_base = self.client.leroymerlinru
     def process_item(self, item, spider):
         collection = self.mongo_base[spider.name]
         collection.insert_one(item)
@@ -26,7 +26,7 @@ class DataBasePipeline:
 
 
 
-class AvitoPhotosPipeline(ImagesPipeline):
+class LeroymerlinPhotosPipeline(ImagesPipeline):
     def get_media_requests(self, item, info):
         if item['photos']:
             for img in item['photos']:
