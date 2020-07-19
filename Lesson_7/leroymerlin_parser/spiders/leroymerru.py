@@ -13,10 +13,12 @@ class LeroymerlinruSpider(scrapy.Spider):
 
     def parse(self, response):
         ads_links = response.xpath('//a[@class="link-wrapper"]')
+        button_link = response.xpath('//a[@rel="next"]/@href')[0]
 
         for link in ads_links:
            yield response.follow(link,callback=self.parse_ads)
-
+        print(1)
+        yield response.follow(button_link, callback=self.parse)
 
     def parse_ads(self, response:HtmlResponse):
 

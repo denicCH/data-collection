@@ -7,7 +7,7 @@
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 from scrapy.pipelines.images import ImagesPipeline
-
+import re
 
 import scrapy
 from pymongo import MongoClient
@@ -25,8 +25,9 @@ class DataBasePipeline:
 
 
 
-
 class LeroymerlinPhotosPipeline(ImagesPipeline):
+
+
     def get_media_requests(self, item, info):
         if item['photos']:
             for img in item['photos']:
@@ -37,9 +38,10 @@ class LeroymerlinPhotosPipeline(ImagesPipeline):
 
 
 
-    # def file_path(self, request, response=None, info=None):
-    #     item = request.meta
-    #     return 'dir1/dir2/file.ext'
+    def file_path(self, request, response=None, info=None):
+        item = request.meta
+        pattern = re.findall(r'/(\w+\.\w{2,4}$)',request.url)
+        return f"{item['name']}/{pattern[-1]}"
 
     def item_completed(self, results, item, info):
         if results:
