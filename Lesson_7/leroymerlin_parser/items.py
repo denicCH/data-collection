@@ -6,13 +6,6 @@
 import scrapy
 from scrapy.loader.processors import MapCompose, TakeFirst
 
-def cleaner_photo(value):
-    if value[:2] == '//':
-        return f'http:{value}'
-    else:
-        return value
-
-
 def transformation_to_float(value):
     q = value[0]
     if not(type(q) == type("value")):
