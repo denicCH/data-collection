@@ -12,9 +12,20 @@ def cleaner_photo(value):
     else:
         return value
 
-def dr_photo(value):
-
-        return value
+def transformation_to_float(value):
+    q = value[0]
+    if not(type(q) == type("value")):
+        for key in q.keys():
+            try:
+                q[key] = float(q[key])
+            except ValueError:
+                pass
+    else:
+            try:
+                q = float(q)
+            except ValueError:
+                pass
+    return q
 
 
 class leroymerlinparserItem(scrapy.Item):
@@ -23,9 +34,8 @@ class leroymerlinparserItem(scrapy.Item):
     _id = scrapy.Field()
     name = scrapy.Field(output_processor=TakeFirst())
     photos = scrapy.Field(input_processor=MapCompose(cleaner_photo))
-    price = scrapy.Field(output_processor=TakeFirst())
-    # characteristics = scrapy.Field(input_processor=MapCompose(dr_photo))
-    characteristics = scrapy.Field(input_processor=MapCompose(dr_photo))
-    url = scrapy.Field()
-    date_pars = scrapy.Field()
+    price = scrapy.Field(output_processor=transformation_to_float)
+    characteristics = scrapy.Field(output_processor=transformation_to_float)
+    url = scrapy.Field(output_processor=TakeFirst())
+    date_pars = scrapy.Field(output_processor=TakeFirst())
 

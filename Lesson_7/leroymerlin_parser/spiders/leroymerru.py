@@ -28,10 +28,7 @@ class LeroymerlinruSpider(scrapy.Spider):
 
         loader.add_xpath('name','//h1[@slot="title"]/text()')
         loader.add_xpath('photos','//picture[@slot="pictures"]/img/@src')
-
         loader.add_xpath('price','//meta[@itemprop="price"]/@content')
-
-
         loader.add_value('url', response.url)
         loader.add_value('characteristics', characteristics)
         loader.add_value('date_pars', datetime.today())
