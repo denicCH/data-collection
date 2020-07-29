@@ -44,8 +44,6 @@ class InstagramSpider(scrapy.Spider):
         )
 
     def wq(self, item, response, user):
-        # user = deepcopy(user)
-        # item = deepcopy(item)
         user['username'] = item
         yield response.follow(f'/{item}', callback=self.user_data_parse, cb_kwargs={'username': item, 'user': user})  # Переходим на желаемую страницу пользователя
 
