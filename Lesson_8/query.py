@@ -11,12 +11,9 @@ def pr_mongo(items):
         for it in item:
             print(it)
 
-
-subscriber = collection.find({'subscriber': {"$eq": 22212229670}})  # //те кто подписаны на пользователя
-subscriptions = collection.find({'subscriptions': {"$eq": 22212229670}})  # //те на кого подписан пользователь
-r = {
+query = {
     'subscriber': collection.find({'subscriber': {"$eq": 22212229670}}),  # //те кто подписаны на пользователя
     'subscriptions': collection.find({'subscriptions': {"$eq": 22212229670}})  # //те на кого подписан пользователь
 }
 
-pr_mongo(r)
+pr_mongo(query)
